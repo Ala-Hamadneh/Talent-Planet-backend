@@ -127,8 +127,11 @@ class LogoutView(APIView):
      Handles the user logout process by removing the JWT cookie.
     """
     def post(self,request):
-        response = Response()
+        response=Response()
         response.delete_cookie('jwt')
         response.data = {
-            "Message": "Logout Successfully"
-        }
+            'message': 'Successfully logged out'
+            }
+        response.status_code = status.HTTP_200_OK
+
+        return response
